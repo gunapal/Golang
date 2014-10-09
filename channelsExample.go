@@ -24,7 +24,8 @@ func read(chnl chan int){
 }
 
 func main() {
-	
+
+	//Make a channel with buffering capacity of one.
 	chnl := make(chan int, 1)
 
 	go read(chnl)
