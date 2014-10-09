@@ -2,17 +2,25 @@ package main
 
 import(
 	"fmt"
+	"time"
 )
 
-func write(chnl chan int){
+//The arrow after the 'chan' keyword
+//indicates write can only perform send/write
+//to the channel
+func write(chnl chan<- int){
 	
 	for i := 0; i < 10; i++ {
 		chnl <- i
 		fmt.Println("writer : ", i)
+		time.Sleep(time.Second )
 	}
 }
 
-func read(chnl chan int){
+//The arrow before the 'chan' keyword
+//indicates read can only recieve from 
+//channel
+func read(chnl <-chan int){
 	i := 0
 	for ;i < 10; {
 		val, isDataAvailable := <- chnl
