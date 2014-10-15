@@ -15,6 +15,8 @@ func write(chnl chan<- int){
 		fmt.Println("writer : ", i)
 		time.Sleep(time.Second )
 	}
+
+	close(chnl)
 }
 
 //The arrow before the 'chan' keyword
@@ -37,7 +39,7 @@ func main() {
 	chnl := make(chan int, 1)
 
 	go read(chnl)
-	go write(chnl)
+	write(chnl)
 
 	var input string
 	fmt.Scanln(&input)
